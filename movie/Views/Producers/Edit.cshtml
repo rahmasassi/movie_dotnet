@@ -1,0 +1,50 @@
+﻿@model ProducerDTO
+@using movie.Data.Enums;
+@using movie.Data.ViewModels;
+@{
+    ViewData["Title"] = "Update producer";
+}
+
+<div class="edit-producer-card">
+    <div class="edit-producer-card-content">
+        <div class="edit-producer-card-title">
+            <h2>Edit @Model.FullName</h2>
+            <div class="producer-underline-title"></div>
+        </div>
+        <div class="edit-producer-card-image">
+            <img class="border-info rounded-circle" id="ProfilePicturePreview" />
+        </div>
+        <form asp-action="Edit" class="edit-form">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <label asp-for="ProfilePictureURL" class="edit-form-label"></label>
+            <input asp-for="ProfilePictureURL" class="edit-form-content"   />
+        <span asp-validation-for="ProfilePictureURL" class="text-danger"></span>
+        <div class="form-border"></div>
+        <label asp-for="FullName" class="edit-form-label"></label>
+            <input asp-for="FullName" class="edit-form-content"  />
+        <span asp-validation-for="FullName" class="text-danger"></span>
+        <div class="form-border"></div>
+            <label asp-for="Bio" class="edit-form-label"></label>
+            <input asp-for="Bio" class="edit-form-content"  />
+        <span asp-validation-for="Bio" class="text-danger"></span>
+        <div class="form-border"></div>
+            <div class="edit-producer-btns">
+                <input type="submit" value="Update" class="btn producer-edit-btn my-2" />
+        <a class="btn producer-show-all-btn my-2" asp-action="Index">Show All</a>
+        </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            var output = document.getElementById('ProfilePicturePreview');
+            output.src = $("#ProfilePictureURL").val();
+        })
+        $("#ProfilePictureURL").on("change", function () {
+            var output = document.getElementById('ProfilePicturePreview');
+            output.src = $(this).val();
+        })
+    </script>
+}

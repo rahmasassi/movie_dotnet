@@ -1,0 +1,43 @@
+﻿@using movie.Data.ViewModels;
+@model RegisterVM;
+
+@{
+    ViewData["Title"] = "Sign up";
+}
+<div class="row">
+    @if (TempData["Error"] != null)
+    {
+        <div class="col-md-12 alert alert-danger">
+            <span><b>Sorry!</b> - @TempData["Error"] </span>
+        </div>
+    }
+<div class="register-card">
+    <div class="register-card-content">
+        <div class="register-card-title">
+            <h2>SIGN UP</h2>
+            <div class="underline-title"></div>
+        </div>
+            <form asp-action="Register" class="form">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <label asp-for="FullName" class="form-label"></label>
+                <input asp-for="FullName" class="form-content" />
+                    <span asp-validation-for="FullName" class="text-danger"></span>
+                <div class="form-border"></div>
+                    <label asp-for="EmailAddress" class="form-label"></label>
+                <input asp-for="EmailAddress" class="form-content" />
+                    <span asp-validation-for="EmailAddress" class="text-danger"></span>
+                <div class="form-border"></div>
+                    <label asp-for="Password" class="form-label"></label>
+                <input asp-for="Password" class="form-content" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                <div class="form-border"></div>
+                    <label asp-for="ConfirmPassword" class="form-label"></label>
+                <input asp-for="ConfirmPassword" class="form-content" />
+                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                <div class="form-border"></div>
+                    <input id="register-submit-btn" type="submit" value="Sign up" />
+            </form>
+    </div>
+</div>
+</div>

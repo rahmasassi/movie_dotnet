@@ -1,0 +1,46 @@
+﻿@model Producer
+
+@{
+    ViewData["Title"] = "Delete producer";
+}
+<div class="delete-producer-card">
+    <div class="delete-producer-card-content">
+        <div class="delete-producer-card-title">
+            <h2>Details for @Model.FullName</h2>
+            <div class="delete-producer-underline-title"></div>
+        </div>
+        <div class="delete-producer-card-image">
+            <img class="border-info rounded-circle" id="ProfilePicturePreview" />
+        </div>
+
+        <label asp-for="ProfilePictureURL" class="form-label"></label>
+        <input asp-for="ProfilePictureURL" class="form-content"  />
+        <span asp-validation-for="ProfilePictureURL" class="text-danger"></span>
+        <div class="form-border"></div>
+        <label asp-for="FullName" class="form-label"></label>
+        <input asp-for="FullName" class="form-content"  />
+        <span asp-validation-for="FullName" class="text-danger"></span>
+        <div class="form-border"></div>
+        <label asp-for="Bio" class="form-label"></label>
+        <input asp-for="Bio" class="form-content"  />
+        <span asp-validation-for="Bio" class="text-danger"></span>
+        <div class="form-border"></div>
+        <div class="delete-producer-btns">
+            <form asp-action="Delete" class="delete-form">
+                <input type="hidden" asp-for="Id" />
+                <input type="submit" value="Confirm" class="btn delete-producer-btn my-2" />
+                <a class="btn producer-show-all-btn my-2" asp-action="Index">Show All</a>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            var output = document.getElementById('ProfilePicturePreview');
+            output.src = $("#ProfilePictureURL").val();
+        })
+    </script>
+}

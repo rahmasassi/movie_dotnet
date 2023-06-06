@@ -1,0 +1,47 @@
+﻿@model Cinema
+
+@{
+    ViewData["Title"] = "Delete cinema";
+}
+
+<div class="delete-cinema-card">
+    <div class="delete-cinema-card-content">
+        <div class="delete-cinema-card-title">
+            <h2>Details for @Model.Name</h2>
+            <div class="delete-cinema-underline-title"></div>
+        </div>
+        <div class="delete-cinema-card-image">
+            <img class="border-info rounded-circle" id="LogoPreview" />
+        </div>
+
+        <label asp-for="Logo" class="form-label"></label>
+        <input asp-for="Logo" class="form-content"  />
+        <span asp-validation-for="Logo" class="text-danger"></span>
+        <div class="form-border"></div>
+        <label asp-for="Name" class="form-label"></label>
+        <input asp-for="Name" class="form-content"  />
+        <span asp-validation-for="Name" class="text-danger"></span>
+        <div class="form-border"></div>
+        <label asp-for="Description" class="form-label"></label>
+        <input asp-for="Description" class="form-content"  />
+        <span asp-validation-for="Description" class="text-danger"></span>
+        <div class="form-border"></div>
+        <div class="delete-cinema-btns">
+            <form asp-action="Delete" class="delete-form">
+                <input type="hidden" asp-for="Id" />
+                <input type="submit" value="Confirm" class="btn delete-cinema-btn my-2" />
+                <a class="btn cinema-show-all-btn my-2" asp-action="Index">Show All</a>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            var output = document.getElementById('LogoPreview');
+            output.src = $("#Logo").val();
+        })
+    </script>
+}

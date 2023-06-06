@@ -1,0 +1,46 @@
+﻿@model Actor
+
+@{
+    ViewData["Title"] = "Ators Details";
+}
+
+<div class="actor-card">
+    <div class="actor-card-content">
+        <div class="actor-card-title">
+            <h2>Details for @Model.FullName</h2>
+            <div class="actor-underline-title"></div>
+        </div>
+        <div class="actor-card-image">
+            <img class="border-info rounded-circle" id="ProfilePicturePreview" />
+        </div>
+
+        <label asp-for="ProfilePictureURL" class="form-label"></label>
+        <input asp-for="ProfilePictureURL" class="form-content" readonly />
+        <span asp-validation-for="ProfilePictureURL" class="text-danger"></span>
+        <div class="form-border"></div>
+        <label asp-for="FullName" class="form-label"></label>
+        <input asp-for="FullName" class="form-content" readonly />
+        <span asp-validation-for="FullName" class="text-danger"></span>
+        <div class="form-border"></div>
+        <label asp-for="Bio" class="form-label"></label>
+        <input asp-for="Bio" class="form-content" readonly />
+        <span asp-validation-for="Bio" class="text-danger"></span>
+        <div class="form-border"></div>
+        <div class="actor-btns">
+            @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+            {
+                <a class="btn actor-edit-btn" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+            }
+            <a class="btn actor-show-all-btn my-2" asp-action="Index">Show All</a>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            var output = document.getElementById('ProfilePicturePreview');
+            output.src = $("#ProfilePictureURL").val();
+        })
+    </script>
+}
